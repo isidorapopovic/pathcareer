@@ -1,0 +1,597 @@
+﻿<!doctype html>
+<html lang="sr-Latn" data-theme="light" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="title">Pathflow</title>
+    <meta name="description" content="Pathflow pomaže mladim pojedinicma da odaberu sledeci korak u akdamskoj kariejeri. Bilo da li zele da upisu osnovne, master ili akademske studije u zemlji ili inostrnasvtu." data-i18n-attr="content:meta_description" />
+    <meta name="theme-color" content="#111111" />
+    <style>
+        /* Light theme (default) */
+        :root {
+            --bg: #ffffff;
+            --fg: #111111;
+            --muted: #5b5b5b;
+            --ring: #eaeaea;
+            --brand: #111111;
+            --cta1: #f3a712;
+            --cta2: #eb5757;
+            --cta3: #6fd3d3;
+            --card: #fafafa;
+        }
+        /* Dark theme */
+        [data-theme="dark"] {
+            --bg: #0c0c0c;
+            --fg: #fafafa;
+            --muted: #bcbcbc;
+            --ring: #1c1c1c;
+            --brand: #fafafa;
+            --card: #111111;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font: 16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+            color: var(--fg);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            transition: background .15s ease,color .15s ease;
+        }
+
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: clamp(16px,3vw,32px)
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-block: 8px 24px
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--brand);
+            flex: 0 0 16px
+        }
+
+        .brand {
+            font-weight: 700;
+            letter-spacing: .2px;
+            font-size: 1.25rem
+        }
+
+        .mode-toggle, .lang-toggle button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--ring);
+            background: var(--card);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform .12s ease,background .12s ease,color .12s ease;
+        }
+
+            .mode-toggle:hover, .lang-toggle button:hover {
+                transform: translateY(-1px)
+            }
+
+        .lang-toggle {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+            .lang-toggle button[aria-pressed="true"] {
+                outline: 2px solid var(--brand)
+            }
+
+        .mode-toggle svg {
+            width: 18px;
+            height: 18px
+        }
+
+        /* Hero + centering */
+        .hero {
+            text-align: center;
+        }
+
+            .hero h1 {
+                font-size: clamp(2.25rem,6vw,3.25rem);
+                margin: 4px 0 8px;
+                line-height: 1.15
+            }
+
+        .lede {
+            font-size: clamp(1rem,2.7vw,1.15rem);
+            color: var(--muted);
+            margin: 8px auto 22px;
+            max-width: 70ch
+        }
+
+        /* CTA circles centered */
+        .ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 22px 0 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chip {
+            display: inline-grid;
+            place-items: center;
+            width: 120px;
+            height: 120px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #111;
+            font-weight: 700;
+            background: var(--cta1);
+            box-shadow: inset 0 0 0 2px rgba(0,0,0,.04);
+            transition: transform .12s ease,filter .12s ease;
+            text-align: center;
+            padding: 10px;
+        }
+
+            .chip:hover {
+                transform: translateY(-2px);
+                filter: brightness(1.02)
+            }
+
+            .chip.c2 {
+                background: var(--cta2);
+                color: #fff
+            }
+
+            .chip.c3 {
+                background: var(--cta3)
+            }
+
+        .panel {
+            border-top: 1px solid var(--ring);
+            margin-top: 24px;
+            padding-top: 24px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 22px
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--ring);
+            border-radius: 14px;
+            padding: 18px clamp(12px,2vw,22px)
+        }
+
+        .label {
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+
+        .mono {
+            font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px 24px
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+            .row svg {
+                width: 18px;
+                height: 18px
+            }
+
+        a {
+            color: inherit
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding-block: 22px 60px;
+            color: var(--muted);
+            border-top: 1px solid var(--ring);
+            margin-top: 26px
+        }
+
+        .social {
+            display: flex;
+            align-items: center;
+            gap: 14px
+        }
+
+            .social a {
+                display: grid;
+                place-items: center;
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                background: var(--card);
+                border: 1px solid var(--ring);
+                text-decoration: none;
+                transition: transform .12s ease
+            }
+
+                .social a:hover {
+                    transform: translateY(-1px)
+                }
+
+        .to-top {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--ring);
+            background: var(--cta3);
+            color: #111;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(0,0,0,.08)
+        }
+
+        @media (min-width:680px) {
+            .panel {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header aria-label="Header">
+            <div class="brand-row">
+                <div class="dot" aria-hidden="true"></div>
+                <div class="brand"><span>Pathflow</span></div>
+            </div>
+
+            <div style="display:flex;gap:10px;align-items:center">
+                <!-- Language switcher -->
+                <nav class="lang-toggle" aria-label="Language">
+                    <button type="button" class="lang-btn" data-lang="sr-Latn" aria-pressed="true">SR</button>
+                    <button type="button" class="lang-btn" data-lang="sr" aria-pressed="false">СР</button>
+                    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+                </nav>
+
+                <!-- Light/Dark toggle -->
+                <button class="mode-toggle" id="modeToggle" type="button" aria-pressed="false" title="Prebaci svetlo/tamno" data-i18n-attr="title:toggle_theme_title">
+                    <span id="modeIcon" aria-hidden="true">🌙</span>
+                    <span id="modeLabel" data-i18n="theme_label_dark">Tamno</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1 data-i18n="headline">Korak blize akademskoj karijeri</h1>
+                <p class="lede" data-i18n="lede">
+                    Pathflow je mali studio fokusiran na besprekorno uvođenje i konverziju. Dizajniramo lagane veb-sajtove i tokove koji pričaju jednu priču i vode ka jednoj radnji.
+                </p>
+
+                <div class="ctas" role="navigation" aria-label="Glavne radnje" data-i18n-attr="aria-label:primary_actions">
+                    <a class="chip" href="#what-we-do" data-i18n="cta_what">Osnovne</a>
+                    <a class="chip c2" href="#contact" data-i18n="cta_contact">Master</a>
+                    <a class="chip c3" href="#contact" data-i18n="cta_email">Akademske</a>
+                </div>
+            </section>
+
+            <section id="what-we-do" class="panel" aria-label="O nama" data-i18n-attr="aria-label:about">
+                <div class="card">
+                    <div class="label" data-i18n="wwd_title">Šta radimo</div>
+                    <p data-i18n="wwd_body">Pre svega se trudimo da razumemo vase zelje, sta biste voleli, sta ocekujete.</p>
+                    <ul>
+                        <li data-i18n="wwd_b1">Karijerno savetovanje</li>
+                        <li data-i18n="wwd_b2">Savetovanje oko upisa</li>
+                        <li data-i18n="wwd_b3">Pomoc u pisanju CV, motivacionih pisama i cover letter-a</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="label" data-i18n="hiw_title">Kako funkcioniše</div>
+                    <ol>
+                        <li><b data-i18n="hiw_scope_b">Prvi korak:</b> <span data-i18n="hiw_scope_t">30-minutni poziv da definišemo jednu radnju.</span></li>
+                        <li><b data-i18n="hiw_draft_b">Nacrt:</b> <span data-i18n="hiw_draft_t">dobicete spisak instuticija koje odgovaraju vasim potrebama</span></li>
+                        <li><b data-i18n="hiw_ship_b">Nastavk:</b> <span data-i18n="hiw_ship_t">Priprema dokumentacije za upis</span></li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="contact" class="panel" aria-label="Kontakt" data-i18n-attr="aria-label:contact">
+                <div class="card">
+                    <div class="label" data-i18n="phone_title">Telefon</div>
+                    <div class="contact-grid">
+                        <div class="row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.1 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.89.32 1.76.6 2.6a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.57-1.15a2 2 0 0 1 2.11-.45c.84.28 1.71.49 2.6.6A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                            <a class="mono" href="tel:+381601234567">+381 60 123 4567</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="label" data-i18n="email_title">Imejl</div>
+                    <div class="row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 4h16v16H4z" />
+                            <path d="m22 6-10 7L2 6" />
+                        </svg>
+                        <a class="mono" href="mailto:hello@pathflow.example">hello@pathflow.example</a>
+                    </div>
+                    <p class="muted" style="margin-top:10px;" data-i18n="email_hint">Imate nekih dodatnih pitanja i zainterseovani ste da cujete vise o ponudi? pisite nam na mejl</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>© <span id="y"></span> Pathflow.</div>
+            <div class="social" aria-label="Društvene veze" data-i18n-attr="aria-label:social_links">
+                <a href="#" data-i18n-attr="aria-label:linkedin">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                        <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.5h4V23h-4zM8.5 8.5h3.8v2h.1c.5-1 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.8V23h-4v-6.4c0-1.5 0-3.5-2.1-3.5s-2.5 1.6-2.5 3.4V23h-4z" />
+                    </svg>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <button class="to-top" aria-label="Nazad na vrh" title="Nazad na vrh" data-i18n-attr="aria-label:back_to_top|title:back_to_top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m18 15-6-6-6 6" />
+        </svg>
+    </button>
+
+    <!-- Screen reader live announcements for language changes -->
+    <div id="live-region" aria-live="polite" style="position:absolute;clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;white-space:nowrap;width:1px"></div>
+
+    <script>
+        // --- Dictionaries ---
+        const I18N = {
+            "sr-Latn": {
+                title: "Pathflow",
+                meta_description: "Pathflow pomaže mladim pojedinicma da odaberu sledeci korak u akdamskoj kariejeri. Bilo da li zele da upisu osnovne, master ili akademske studije u zemlji ili inostrnasvtu.",
+                toggle_theme_title: "Prebaci svetlo/tamno",
+                theme_label_dark: "Tamno",
+                theme_label_light: "Svetlo",
+                headline: "Korak blize akademskoj karijeri",
+                lede: "Pathflow je mali studio fokusiran na besprekorno uvođenje i konverziju. Dizajniramo lagane veb-sajtove i tokove koji pričaju jednu priču i vode ka jednoj radnji.",
+                primary_actions: "Glavne radnje",
+                cta_what: "Osnovne",
+                cta_contact: "Master",
+                cta_email: "Akademske",
+                about: "O nama",
+                wwd_title: "Šta radimo",
+                wwd_body: "Pre svega se trudimo da razumemo vase zelje, sta biste voleli, sta ocekujete.",
+                wwd_b1: "Karijerno savetovanje",
+                wwd_b2: "Savetovanje oko upisa",
+                wwd_b3: "Pomoc u pisanju CV, motivacionih pisama i cover letter-a",
+                hiw_title: "Kako funkcioniše",
+                hiw_scope_b: "Prvi korak:",
+                hiw_scope_t: "30-minutni poziv da definišemo jednu radnju.",
+                hiw_draft_b: "Nacrt:",
+                hiw_draft_t: "dobicete spisak instuticija koje odgovaraju vasim potrebama",
+                hiw_ship_b: "Nastavk:",
+                hiw_ship_t: "Priprema dokumentacije za upis",
+                phone_title: "Telefon",
+                email_title: "Imejl",
+                email_hint: "Imate nekih dodatnih pitanja i zainterseovani ste da cujete vise o ponudi? pisite nam na mejl",
+                social_links: "Društvene veze",
+                linkedin: "LinkedIn",
+                back_to_top: "Nazad na vrh"
+            },
+            "sr": {
+                title: "Pathflow",
+                meta_description: "Pathflow помаже младим појединцима да одаберу следећи корак у академској каријери. Било да желе да упишу основне, мастер или докторске студије у земљи или иностранству.",
+                toggle_theme_title: "Пребаци светло/тамно",
+                theme_label_dark: "Тамно",
+                theme_label_light: "Светло",
+                headline: "Корак ближе академској каријери",
+                lede: "Pathflow је мали студио фокусиран на беспрекорно увођење и конверзију. Дизајнирамо лагане веб-сајтове и токове који причају једну причу и воде ка једној радњи.",
+                primary_actions: "Главне радње",
+                cta_what: "Основне",
+                cta_contact: "Мастер",
+                cta_email: "Академске",
+                about: "О нама",
+                wwd_title: "Шта радимо",
+                wwd_body: "Пре свега се трудимо да разумемо ваше жеље, шта бисте волели, шта очекујете.",
+                wwd_b1: "Каријерно саветовање",
+                wwd_b2: "Саветовање око уписа",
+                wwd_b3: "Помоћ у писању CV, мотивационих писама и cover letter-а",
+                hiw_title: "Како функционише",
+                hiw_scope_b: "Први корак:",
+                hiw_scope_t: "30-минутни позив да дефинишемо једну радњу.",
+                hiw_draft_b: "Нацрт:",
+                hiw_draft_t: "Добићете списак институција које одговарају вашим потребама",
+                hiw_ship_b: "Наставак:",
+                hiw_ship_t: "Припрема документације за упис",
+                phone_title: "Телефон",
+                email_title: "Имејл",
+                email_hint: "Имате додатна питања и заинтересовани сте да чујете више о понуди? Пишите нам на имејл.",
+                social_links: "Друштвене везе",
+                linkedin: "Линкедин",
+                back_to_top: "Назад на врх"
+            },
+            "en": {
+                title: "Pathflow",
+                meta_description: "Pathflow helps young individuals choose the next step in their academic career—whether enrolling in bachelor's, master's, or doctoral studies at home or abroad.",
+                toggle_theme_title: "Toggle light/dark",
+                theme_label_dark: "Dark",
+                theme_label_light: "Light",
+                headline: "A step closer to your academic career",
+                lede: "Pathflow is a small studio focused on seamless onboarding and conversion. We design lightweight websites and flows that tell one story and drive one action.",
+                primary_actions: "Primary actions",
+                cta_what: "Bachelor",
+                cta_contact: "Master",
+                cta_email: "Doctoral",
+                about: "About us",
+                wwd_title: "What we do",
+                wwd_body: "First and foremost, we strive to understand your goals—what you’d like and what you expect.",
+                wwd_b1: "Career counseling",
+                wwd_b2: "Admissions advising",
+                wwd_b3: "Help with CVs, motivation letters, and cover letters",
+                hiw_title: "How it works",
+                hiw_scope_b: "First step:",
+                hiw_scope_t: "A 30-minute call to define the next action.",
+                hiw_draft_b: "Plan:",
+                hiw_draft_t: "You will receive a list of institutions that match your needs.",
+                hiw_ship_b: "Follow-up:",
+                hiw_ship_t: "Preparing application documents",
+                phone_title: "Phone",
+                email_title: "Email",
+                email_hint: "Have more questions and want to hear more about the offer? Write to us by email.",
+                social_links: "Social links",
+                linkedin: "LinkedIn",
+                back_to_top: "Back to top"
+            }
+        };
+
+        const DEFAULT_LANG = "sr-Latn";
+
+        // --- Language helpers ---
+        function setHtmlLang(tag) { document.documentElement.lang = tag; document.documentElement.dir = "ltr"; }
+        function markLangButtons(lang) {
+            document.querySelectorAll(".lang-btn").forEach(btn => {
+                btn.setAttribute("aria-pressed", btn.dataset.lang === lang ? "true" : "false");
+            });
+        }
+        function t(lang, key) {
+            return (I18N[lang] && I18N[lang][key]) || (I18N[DEFAULT_LANG][key] ?? "");
+        }
+        function applyI18n(lang) {
+            const dict = I18N[lang] || I18N[DEFAULT_LANG];
+
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (key && dict[key] !== undefined) el.textContent = dict[key];
+            });
+
+            document.querySelectorAll("[data-i18n-attr]").forEach(el => {
+                const spec = el.getAttribute("data-i18n-attr");
+                if (!spec) return;
+                spec.split("|").forEach(pair => {
+                    const [attr, key] = pair.split(":");
+                    if (attr && key && dict[key] !== undefined) {
+                        el.setAttribute(attr.trim(), dict[key]);
+                    }
+                });
+            });
+
+            const titleEl = document.querySelector('title[data-i18n="title"]');
+            if (titleEl) titleEl.textContent = dict.title;
+            const meta = document.querySelector('meta[name="description"]');
+            if (meta) meta.setAttribute("content", dict.meta_description);
+
+            setHtmlLang(lang);
+
+            const lr = document.getElementById("live-region");
+            if (lr) {
+                lr.textContent =
+                    lang === "sr-Latn" ? "Jezik je postavljen na srpski (latinica)" :
+                        lang === "sr" ? "Језик је постављен на српски (ћирилица)" :
+                            "Language set to English";
+            }
+        }
+
+        // --- Theme controls ---
+        (function initTheme() {
+            const saved = localStorage.getItem("theme");
+            if (saved === "dark" || saved === "light") {
+                document.documentElement.setAttribute("data-theme", saved);
+            } else {
+                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+            }
+        })();
+
+        function applyThemeLabel() {
+            const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+            const icon = document.getElementById("modeIcon");
+            const label = document.getElementById("modeLabel");
+            const btn = document.getElementById("modeToggle");
+            const currentLang = localStorage.getItem("lang") || DEFAULT_LANG;
+            icon.textContent = isDark ? "🌞" : "🌙";
+            label.textContent = isDark ? t(currentLang, "theme_label_light") : t(currentLang, "theme_label_dark");
+            btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute("content", isDark ? "#0c0c0c" : "#111111");
+        }
+
+        document.getElementById("modeToggle").addEventListener("click", () => {
+            const current = document.documentElement.getAttribute("data-theme");
+            const next = current === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", next);
+            localStorage.setItem("theme", next);
+            applyThemeLabel();
+        });
+
+        // --- Language buttons wiring ---
+        document.querySelectorAll(".lang-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const lang = btn.getAttribute("data-lang");
+                localStorage.setItem("lang", lang);
+                markLangButtons(lang);
+                applyI18n(lang);
+                applyThemeLabel();
+            });
+        });
+
+        // --- Init ---
+        document.getElementById("y").textContent = new Date().getFullYear();
+
+        (function initLang() {
+            const saved = localStorage.getItem("lang") || DEFAULT_LANG;
+            markLangButtons(saved);
+            applyI18n(saved);
+        })();
+
+        applyThemeLabel();
+    </script>
+</body>
+</html>

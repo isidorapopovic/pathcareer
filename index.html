@@ -1,0 +1,430 @@
+﻿<!doctype html>
+<html lang="sr-Latn" data-theme="light" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="title">Pathflow</title>
+    <meta name="description" content="Pathflow pomaže mladim pojedinicma da odaberu sledeći korak u akademskoj karijeri. Bilo da žele da upišu osnovne, master ili doktorske studije u zemlji ili inostranstvu." data-i18n-attr="content:meta_description" />
+    <meta name="theme-color" content="#111111" />
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #111111;
+            --muted: #5b5b5b;
+            --ring: #eaeaea;
+            --brand: #111111;
+            --cta1: #f3a712;
+            --cta2: #eb5757;
+            --cta3: #6fd3d3;
+            --card: #fafafa;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0c0c0c;
+            --fg: #fafafa;
+            --muted: #bcbcbc;
+            --ring: #1c1c1c;
+            --brand: #fafafa;
+            --card: #111111;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font: 16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+            color: var(--fg);
+            background: var(--bg);
+            transition: background .15s ease, color .15s ease;
+        }
+
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: clamp(16px,3vw,32px);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-block: 8px 24px;
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--brand);
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .mode-toggle, .lang-toggle button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--ring);
+            background: var(--card);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform .12s ease;
+        }
+
+            .mode-toggle:hover, .lang-toggle button:hover {
+                transform: translateY(-1px);
+            }
+
+        .lang-toggle {
+            display: flex;
+            gap: 8px;
+        }
+
+            .lang-toggle button[aria-pressed="true"] {
+                outline: 2px solid var(--brand);
+            }
+
+        .hero {
+            text-align: center;
+        }
+
+            .hero h1 {
+                font-size: clamp(2.25rem,6vw,3.25rem);
+                margin: 4px 0 8px;
+            }
+
+        .lede {
+            font-size: clamp(1rem,2.7vw,1.15rem);
+            color: var(--muted);
+            margin: 8px auto 22px;
+            max-width: 70ch;
+        }
+
+        .ctas {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin: 22px 0 30px;
+        }
+
+        .chip {
+            display: grid;
+            place-items: center;
+            width: 120px;
+            height: 120px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #111;
+            background: var(--cta1);
+            font-weight: 700;
+        }
+
+            .chip.c2 {
+                background: var(--cta2);
+                color: #fff;
+            }
+
+            .chip.c3 {
+                background: var(--cta3);
+            }
+
+        .panel {
+            border-top: 1px solid var(--ring);
+            margin-top: 24px;
+            padding-top: 24px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 22px;
+        }
+
+        @media (min-width:680px) {
+            .panel {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--ring);
+            border-radius: 14px;
+            padding: 18px clamp(12px,2vw,22px);
+        }
+
+        .label {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding-block: 22px 60px;
+            border-top: 1px solid var(--ring);
+            color: var(--muted);
+            margin-top: 26px;
+        }
+
+        .social {
+            display: flex;
+            gap: 14px;
+        }
+
+        .to-top {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--ring);
+            background: var(--cta3);
+            color: #111;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="brand-row">
+                <div class="dot"></div>
+                <div class="brand">Pathflow</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center">
+                <nav class="lang-toggle">
+                    <button type="button" class="lang-btn" data-lang="sr-Latn" aria-pressed="true">SR</button>
+                    <button type="button" class="lang-btn" data-lang="sr" aria-pressed="false">СР</button>
+                    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+                </nav>
+                <button class="mode-toggle" id="modeToggle" type="button">
+                    <span id="modeIcon">🌙</span>
+                    <span id="modeLabel" data-i18n="theme_label_dark">Tamno</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1 data-i18n="headline">Korak bliže akademskoj karijeri</h1>
+                <p class="lede" data-i18n="lede">
+                    Personalizovano savetovanje za osnovne, master i doktorske studije u Srbiji i inostranstvu.
+                </p>
+                <div class="ctas">
+                    <a class="chip" href="#what-we-do" data-i18n="cta_what">Osnovne</a>
+                    <a class="chip c2" href="#contact" data-i18n="cta_contact">Master</a>
+                    <a class="chip c3" href="#contact" data-i18n="cta_email">Akademske</a>
+                </div>
+            </section>
+
+            <section id="what-we-do" class="panel">
+                <div class="card">
+                    <div class="label" data-i18n="wwd_title">Šta radimo</div>
+                    <ul>
+                        <li data-i18n="wwd_b1">Karijerno savetovanje i mapiranje ciljeva</li>
+                        <li data-i18n="wwd_b2">Istraživanje i izbor programa/univerziteta</li>
+                        <li data-i18n="wwd_b3">Strategija rokova, budžeta i stipendija</li>
+                        <li data-i18n="wwd_b4">Uredan CV i motivaciono pismo (pisanje/uređivanje)</li>
+                        <li data-i18n="wwd_b5">Priprema preporuka i formulara za prijavu</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="label" data-i18n="hiw_title">Kako funkcioniše</div>
+                    <ul>
+                        <li data-i18n="hiw_b1">Uvodni poziv (30 min) – razumemo šta želite i očekivanja.</li>
+                        <li data-i18n="hiw_b2">Ponuda – lista opcija, uslova i rokovi.</li>
+                        <li data-i18n="hiw_b3">Pomoć pri prijavljivanju – rad 1-na-1 na CV-u, motivacionom pismu i preporukama.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="contact" class="panel">
+                <div class="card">
+                    <div class="label" data-i18n="for_title">Za koga je</div>
+                    <ul>
+                        <li data-i18n="for_b1">Maturante koji biraju osnovne studije</li>
+                        <li data-i18n="for_b2">Studente koji ciljaju master u zemlji ili inostranstvu</li>
+                        <li data-i18n="for_b3">Istraživače/profesionalce koji planiraju doktorske studije ili promenu karijere</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="label" data-i18n="contact_title">Kontakt</div>
+                    <div class="row" style="align-items:center; gap:8px;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                        <a class="mono" href="https://www.instagram.com/pathflow.example" target="_blank">@pathflow.example</a>
+                    </div>
+                    <div class="row" style="align-items:center; gap:8px; margin-top:8px;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        <a class="mono" href="mailto:hello@pathflow.example">hello@pathflow.example</a>
+                    </div>
+                    <p class="muted" style="margin-top:10px;" data-i18n="email_hint">
+                        Imate nekih dodatnih pitanja i zainterseovani ste da čujete više o ponudi? Pišite nam na mejl.
+                    </p>
+                </div>
+
+            </section>
+        </main>
+
+        <footer>
+            <div>© <span id="y"></span> Pathflow.</div>
+            <div class="social">
+                <a href="#"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.5h4V23h-4zM8.5 8.5h3.8v2h.1c.5-1 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.8V23h-4v-6.4c0-1.5 0-3.5-2.1-3.5s-2.5 1.6-2.5 3.4V23h-4z" /></svg></a>
+            </div>
+        </footer>
+    </div>
+
+    <button class="to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆</button>
+
+    <script>
+        const I18N = {
+            "sr-Latn": {
+                title: "Pathflow",
+                meta_description: "Pathflow pomaže mladim pojedincima da odaberu sledeći korak u akademskoj karijeri.",
+                theme_label_dark: "Tamno", theme_label_light: "Svetlo",
+                headline: "Korak bliže akademskoj karijeri",
+                lede: "Personalizovano savetovanje za osnovne, master i doktorske studije u Srbiji i inostranstvu.",
+                cta_what: "Osnovne", cta_contact: "Master", cta_email: "Akademske",
+                wwd_title: "Šta radimo",
+                wwd_b1: "Karijerno savetovanje i mapiranje ciljeva",
+                wwd_b2: "Istraživanje i izbor programa/univerziteta",
+                wwd_b3: "Strategija rokova, budžeta i stipendija",
+                wwd_b4: "Uredan CV i motivaciono pismo (pisanje/uređivanje)",
+                wwd_b5: "Priprema preporuka i formulara za prijavu",
+                hiw_title: "Kako funkcioniše",
+                hiw_b1: "Uvodni poziv (30 min) – razumemo šta želite i očekivanja.",
+                hiw_b2: "Ponuda – lista opcija, uslova i rokovi.",
+                hiw_b3: "Pomoć pri prijavljivanju – rad 1-na-1 na CV-u, motivacionom pismu i preporukama.",
+                for_title: "Za koga je",
+                for_b1: "Maturante koji biraju osnovne studije",
+                for_b2: "Studente koji ciljaju master u zemlji ili inostranstvu",
+                for_b3: "Istraživače/profesionalce koji planiraju doktorske studije ili promenu karijere",
+                contact_title: "Kontakt",
+                email_hint: "Imate nekih dodatnih pitanja i zainterseovani ste da čujete više o ponudi? Pišite nam na mejl."
+            },
+            "sr": {
+                title: "Pathflow",
+                meta_description: "Pathflow помаже младим појединцима да одаберу следећи корак у академској каријери.",
+                theme_label_dark: "Тамно", theme_label_light: "Светло",
+                headline: "Корак ближе академској каријери",
+                lede: "Персонализовано саветовање за основне, мастер и докторске студије у Србији и иностранству.",
+                cta_what: "Основне", cta_contact: "Мастер", cta_email: "Академске",
+                wwd_title: "Шта радимо",
+                wwd_b1: "Каријерно саветовање и мапирање циљева",
+                wwd_b2: "Истраживање и избор програма/универзитета",
+                wwd_b3: "Стратегија рокова, буџета и стипендија",
+                wwd_b4: "Уредан CV и мотивационо писмо (писање/уређивање)",
+                wwd_b5: "Припрема препорука и формулара за пријаву",
+                hiw_title: "Како функционише",
+                hiw_b1: "Уводни позив (30 мин) – разумемо шта желите и очекивања.",
+                hiw_b2: "Понуда – листа опција, услова и рокови.",
+                hiw_b3: "Помоћ при пријављивању – рад 1-на-1 на CV-у, мотивационом писму и препорукама.",
+                for_title: "За кога је",
+                for_b1: "Матуренте који бирају основне студије",
+                for_b2: "Студенте који циљају мастер у земљи или иностранству",
+                for_b3: "Истраживаче/професионалце који планирају докторске студије или промену каријере",
+                contact_title: "Контакт",
+                email_hint: "Имате додатна питања и заинтересовани сте да чујете више о понуди? Пишите нам на имејл."
+            },
+            "en": {
+                title: "Pathflow",
+                meta_description: "Pathflow helps young individuals choose the next step in their academic career.",
+                theme_label_dark: "Dark", theme_label_light: "Light",
+                headline: "A step closer to your academic career",
+                lede: "Personalized guidance for bachelor's, master's, and doctoral studies in Serbia and abroad.",
+                cta_what: "Bachelor", cta_contact: "Master", cta_email: "Doctoral",
+                wwd_title: "What we do",
+                wwd_b1: "Career counseling and goal mapping",
+                wwd_b2: "Research and selection of programs/universities",
+                wwd_b3: "Strategy for deadlines, budgets, and scholarships",
+                wwd_b4: "Polished CV and motivation letter (writing/editing)",
+                wwd_b5: "Preparation of recommendations and application forms",
+                hiw_title: "How it works",
+                hiw_b1: "Intro call (30 min) – we understand your goals and expectations.",
+                hiw_b2: "Offer – a list of options, requirements, and deadlines.",
+                hiw_b3: "Application support – 1-on-1 work on your CV, motivation letter, and recommendations.",
+                for_title: "Who is it for",
+                for_b1: "High school graduates choosing undergraduate studies",
+                for_b2: "Students aiming for master's studies at home or abroad",
+                for_b3: "Researchers or professionals planning doctoral studies or a career change",
+                contact_title: "Contact",
+                email_hint: "Have more questions and want to hear more about the offer? Write to us by email."
+            }
+        };
+
+        const DEFAULT_LANG = "sr-Latn";
+
+        function setHtmlLang(tag) { document.documentElement.lang = tag; }
+        function markLangButtons(lang) {
+            document.querySelectorAll(".lang-btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+        }
+        function applyI18n(lang) {
+            const d = I18N[lang] || I18N[DEFAULT_LANG];
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const k = el.dataset.i18n;
+                if (d[k]) el.textContent = d[k];
+            });
+            const meta = document.querySelector('meta[name="description"]');
+            if (meta) meta.content = d.meta_description;
+        }
+
+        // Theme
+        (function () {
+            const saved = localStorage.getItem("theme") || "light";
+            document.documentElement.dataset.theme = saved;
+        })();
+
+        document.getElementById("modeToggle").addEventListener("click", () => {
+            const current = document.documentElement.dataset.theme;
+            const next = current === "dark" ? "light" : "dark";
+            document.documentElement.dataset.theme = next;
+            localStorage.setItem("theme", next);
+        });
+
+        document.querySelectorAll(".lang-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const lang = btn.dataset.lang;
+                localStorage.setItem("lang", lang);
+                markLangButtons(lang);
+                applyI18n(lang);
+            });
+        });
+
+        document.getElementById("y").textContent = new Date().getFullYear();
+
+        const savedLang = localStorage.getItem("lang") || DEFAULT_LANG;
+        markLangButtons(savedLang);
+        applyI18n(savedLang);
+    </script>
+</body>
+</html>

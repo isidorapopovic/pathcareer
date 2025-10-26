@@ -1,10 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="sr-Latn" data-theme="light" dir="ltr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title data-i18n="title">Pathflow</title>
-    <meta name="description" content="Pathflow pomaže mladim pojedinicma da odaberu sledeći korak u akademskoj karijeri. Bilo da žele da upišu osnovne, master ili doktorske studije u zemlji ili inostranstvu." data-i18n-attr="content:meta_description" />
+    <meta name="description" content="Pathflow pomaže mladim pojedincima da odaberu sledeći korak u akademskoj karijeri. Bilo da žele da upišu osnovne, master ili doktorske studije u zemlji ili inostranstvu." data-i18n-attr="content:meta_description" />
     <meta name="theme-color" content="#111111" />
     <style>
         :root {
@@ -28,9 +28,7 @@
             --card: #111111;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -40,11 +38,7 @@
             transition: background .15s ease, color .15s ease;
         }
 
-        .wrap {
-            max-width: 920px;
-            margin: 0 auto;
-            padding: clamp(16px,3vw,32px);
-        }
+        .wrap { max-width: 920px; margin: 0 auto; padding: clamp(16px,3vw,32px); }
 
         header {
             display: flex;
@@ -53,157 +47,62 @@
             padding-block: 8px 24px;
         }
 
-        .brand-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .brand-row { display: flex; align-items: center; gap: 12px; }
 
-        .dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--brand);
-        }
+        .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--brand); }
 
-        .brand {
-            font-weight: 700;
-            font-size: 1.25rem;
-        }
+        .brand { font-weight: 700; font-size: 1.25rem; }
 
         .mode-toggle, .lang-toggle button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid var(--ring);
-            background: var(--card);
-            color: var(--fg);
-            padding: 8px 12px;
-            border-radius: 999px;
-            cursor: pointer;
-            font-weight: 600;
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid var(--ring); background: var(--card); color: var(--fg);
+            padding: 8px 12px; border-radius: 999px; cursor: pointer; font-weight: 600;
             transition: transform .12s ease;
         }
+        .mode-toggle:hover, .lang-toggle button:hover { transform: translateY(-1px); }
 
-            .mode-toggle:hover, .lang-toggle button:hover {
-                transform: translateY(-1px);
-            }
+        .lang-toggle { display: flex; gap: 8px; }
+        .lang-toggle button[aria-pressed="true"] { outline: 2px solid var(--brand); }
 
-        .lang-toggle {
-            display: flex;
-            gap: 8px;
-        }
+        .hero { text-align: center; }
+        .hero h1 { font-size: clamp(2.25rem,6vw,3.25rem); margin: 4px 0 8px; }
 
-            .lang-toggle button[aria-pressed="true"] {
-                outline: 2px solid var(--brand);
-            }
+        .lede { font-size: clamp(1rem,2.7vw,1.15rem); color: var(--muted); margin: 8px auto 22px; max-width: 70ch; }
 
-        .hero {
-            text-align: center;
-        }
-
-            .hero h1 {
-                font-size: clamp(2.25rem,6vw,3.25rem);
-                margin: 4px 0 8px;
-            }
-
-        .lede {
-            font-size: clamp(1rem,2.7vw,1.15rem);
-            color: var(--muted);
-            margin: 8px auto 22px;
-            max-width: 70ch;
-        }
-
-        .ctas {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            margin: 22px 0 30px;
-        }
+        .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin: 22px 0 30px; }
 
         .chip {
-            display: grid;
-            place-items: center;
-            width: 120px;
-            height: 120px;
-            border-radius: 999px;
-            text-decoration: none;
-            color: #111;
-            background: var(--cta1);
-            font-weight: 700;
+            display: grid; place-items: center;
+            width: 120px; height: 120px; border-radius: 999px;
+            text-decoration: none; color: #111; background: var(--cta1); font-weight: 700;
         }
-
-            .chip.c2 {
-                background: var(--cta2);
-                color: #fff;
-            }
-
-            .chip.c3 {
-                background: var(--cta3);
-            }
+        .chip.c2 { background: var(--cta2); color: #fff; }
+        .chip.c3 { background: var(--cta3); }
 
         .panel {
             border-top: 1px solid var(--ring);
-            margin-top: 24px;
-            padding-top: 24px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 22px;
+            margin-top: 24px; padding-top: 24px;
+            display: grid; grid-template-columns: 1fr; gap: 22px;
         }
+        @media (min-width:680px){ .panel{ grid-template-columns: 1fr 1fr; } }
 
-        @media (min-width:680px) {
-            .panel {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+        .card { background: var(--card); border: 1px solid var(--ring); border-radius: 14px; padding: 18px clamp(12px,2vw,22px); }
 
-        .card {
-            background: var(--card);
-            border: 1px solid var(--ring);
-            border-radius: 14px;
-            padding: 18px clamp(12px,2vw,22px);
-        }
+        .label { font-weight: 700; margin-bottom: 6px; }
 
-        .label {
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .row { display: flex; align-items: center; gap: 10px; }
 
         footer {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding-block: 22px 60px;
-            border-top: 1px solid var(--ring);
-            color: var(--muted);
-            margin-top: 26px;
-        }
-
-        .social {
-            display: flex;
-            gap: 14px;
+            display: flex; justify-content: space-between; flex-wrap: wrap;
+            padding-block: 22px 60px; border-top: 1px solid var(--ring);
+            color: var(--muted); margin-top: 26px;
         }
 
         .to-top {
-            position: fixed;
-            bottom: 22px;
-            right: 22px;
-            width: 56px;
-            height: 56px;
-            border-radius: 999px;
-            display: grid;
-            place-items: center;
-            border: 1px solid var(--ring);
-            background: var(--cta3);
-            color: #111;
-            cursor: pointer;
+            position: fixed; bottom: 22px; right: 22px;
+            width: 56px; height: 56px; border-radius: 999px;
+            display: grid; place-items: center; border: 1px solid var(--ring);
+            background: var(--cta3); color: #111; cursor: pointer;
         }
     </style>
 </head>
@@ -273,34 +172,44 @@
                 </div>
                 <div class="card">
                     <div class="label" data-i18n="contact_title">Kontakt</div>
+
+                    <!-- Instagram -->
                     <div class="row" style="align-items:center; gap:8px;">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                         </svg>
-                        <a class="mono" href="https://www.instagram.com/pathflow.example" target="_blank">@pathflow.example</a>
+                        <a class="mono" href="https://www.instagram.com/path_flow" target="_blank" rel="noopener noreferrer">@path_flow</a>
                     </div>
+
+                    <!-- Email -->
                     <div class="row" style="align-items:center; gap:8px; margin-top:8px;">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
                             <polyline points="22,6 12,13 2,6" />
                         </svg>
-                        <a class="mono" href="mailto:hello@pathflow.example">hello@pathflow.example</a>
+                        <a class="mono" href="mailto:emailpathflow@gmail.com">emailpathflow@gmail.com</a>
                     </div>
+
+                    <!-- LinkedIn -->
+                    <div class="row" style="align-items:center; gap:8px; margin-top:8px;">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.5h4V23h-4zM8.5 8.5h3.8v2h.1c.5-1 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.8V23h-4v-6.4c0-1.5 0-3.5-2.1-3.5s-2.5 1.6-2.5 3.4V23h-4z" />
+                        </svg>
+                        <a class="mono" href="https://www.linkedin.com/company/pathflow1/" target="_blank" rel="noopener noreferrer">LinkedIn (Pathflow)</a>
+                    </div>
+
                     <p class="muted" style="margin-top:10px;" data-i18n="email_hint">
                         Imate nekih dodatnih pitanja i zainterseovani ste da čujete više o ponudi? Pišite nam na mejl.
                     </p>
                 </div>
-
             </section>
         </main>
 
         <footer>
             <div>© <span id="y"></span> Pathflow.</div>
-            <div class="social">
-                <a href="#"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.5h4V23h-4zM8.5 8.5h3.8v2h.1c.5-1 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.8V23h-4v-6.4c0-1.5 0-3.5-2.1-3.5s-2.5 1.6-2.5 3.4V23h-4z" /></svg></a>
-            </div>
+            <!-- Social icons removed from footer as requested -->
         </footer>
     </div>
 
@@ -350,7 +259,7 @@
                 hiw_b2: "Понуда – листа опција, услова и рокови.",
                 hiw_b3: "Помоћ при пријављивању – рад 1-на-1 на CV-у, мотивационом писму и препорукама.",
                 for_title: "За кога је",
-                for_b1: "Матуренте који бирају основне студије",
+                for_b1: "Матуренте који бирају основne студije",
                 for_b2: "Студенте који циљају мастер у земљи или иностранству",
                 for_b3: "Истраживаче/професионалце који планирају докторске студије или промену каријере",
                 contact_title: "Контакт",
